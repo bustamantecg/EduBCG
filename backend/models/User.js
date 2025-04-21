@@ -16,9 +16,13 @@ const userSchema = new mongoose.Schema({
   },
   rol: {
     type: String,
-    enum: ['admin', 'alumno', "docente"],
+    enum: ['admin', 'docente', 'alumno'],
     default: 'alumno'
-  }
+  },
+  perfiles: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Perfil'
+  }]
 }, { timestamps: true });
 
 export default mongoose.model('User', userSchema);

@@ -1,0 +1,12 @@
+const Dashboard = () => {
+    return (
+      <div className="p-6">
+        <h1 className="text-3xl font-bold text-gray-800">Bienvenido al sistema</h1>
+        <p className="mt-4 text-gray-600">Esta es la página principal después del login.</p>
+        <p className="mt-4 text-gray-600">se llama pages/Dashboard.jsx</p>
+      </div>
+    );
+  };
+  
+  export default Dashboard;
+  
