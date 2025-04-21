@@ -24,7 +24,6 @@ const LoginPage = () => {
 
   return (
     <>
-
       <main className="mx-auto flex min-h-screen w-full items-center justify-center bg-gray-900 text-white">
         <form
           onSubmit={handleSubmit}>
@@ -65,17 +64,16 @@ const LoginPage = () => {
             <a href="#" className="transform text-center font-semibold text-gray-500 duration-300 hover:text-gray-300">FORGOT PASSWORD?</a>
 
             <p className="text-center text-lg">
-  No tienes una cuenta?{" "}
-  <Link to="/register" className="font-medium text-indigo-500 underline-offset-4 hover:underline">
-    Crear una
-  </Link>
-</p>
-            <p className="text-center text-lg">              
+              No tienes una cuenta?{" "}
+              <Link to="/register" className="font-medium text-indigo-500 underline-offset-4 hover:underline">
+                Crear una
+              </Link>
+            </p>
+            <p className="text-center text-lg">
               <a href="#" className="font-medium text-indigo-500 underline-offset-4 hover:underline"> Inicio</a>
             </p>
           </section>
         </form>
-
       </main>
     </>
   );

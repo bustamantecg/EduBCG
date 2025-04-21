@@ -13,7 +13,11 @@ const AppRouter = () => {
 
         {/* Rutas protegidas */}
         <Route element={<PrivateRoute />}>
-          <Route path="/" element={<Dashboard />} />
+          <Route path="/" element={
+            <PrivateRoute>
+              <Dashboard />
+            </PrivateRoute>
+          } />
         </Route>
 
         {/* Página no encontrada */}

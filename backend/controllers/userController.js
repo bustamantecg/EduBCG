@@ -9,8 +9,7 @@ const SECRET = process.env.JWT_SECRET;
 // Registrar usuario
 export const registrarUsuario = async (req, res) => {
   try {
-    const { nombre, correo, contrasenia, rol } = req.body;
-
+    const { nombre, correo, contrasenia, rol } = req.body;    
     // Verificar si el correo ya existe
     const existe = await User.findOne({ correo });
     if (existe) {
@@ -26,7 +25,7 @@ export const registrarUsuario = async (req, res) => {
       contrasenia: hash,
       rol
     });
-
+    
     await nuevoUsuario.save();
     res.status(201).json({ mensaje: 'Usuario registrado correctamente' });
   } catch (error) {
