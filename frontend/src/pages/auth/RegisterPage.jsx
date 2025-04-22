@@ -8,7 +8,8 @@ const RegisterPage = () => {
   const [formData, setFormData] = useState({
     nombre: "",
     correo: "",
-    contrasenia: ""    
+    contrasenia: "",
+    rol: ""
   });
 
   const [error, setError] = useState("");
@@ -18,7 +19,7 @@ const RegisterPage = () => {
   };
 
   const handleSubmit = async (e) => {
-    e.preventDefault();    
+    e.preventDefault();
     try {
       await axios.post("http://localhost:5000/api/usuarios/registro", formData);
       navigate("/login");
@@ -35,15 +36,15 @@ const RegisterPage = () => {
           <div className="text-center text-4xl font-medium text-indigo-600">Crear cuenta</div>
           {error && <p className="text-red-600 text-center mb-4">{error}</p>}
           <div className="w-full transform border-b-2 bg-transparent text-lg duration-300 focus-within:border-indigo-500">
-          <input
-            type="text"
-            name="nombre"
-            placeholder="Nombre"
-            value={formData.nombre}
-            onChange={handleChange}
-            className="w-full border-none bg-transparent outline-none placeholder:italic focus:outline-none"
-            required
-          />
+            <input
+              type="text"
+              name="nombre"
+              placeholder="Nombre"
+              value={formData.nombre}
+              onChange={handleChange}
+              className="w-full border-none bg-transparent outline-none placeholder:italic focus:outline-none"
+              required
+            />
           </div>
           <div className="w-full transform border-b-2 bg-transparent text-lg duration-300 focus-within:border-indigo-500">
             <input
@@ -57,16 +58,32 @@ const RegisterPage = () => {
             />
           </div>
           <div className="w-full transform border-b-2 bg-transparent text-lg duration-300 focus-within:border-indigo-500">
-          <input
-            type="password"
-            name="contrasenia"
-            placeholder="Contraseña"
-            value={formData.contrasenia}
-            onChange={handleChange}
-            className="w-full border-none bg-transparent outline-none placeholder:italic focus:outline-none"
-            required
-          />
-            </div>
+            <input
+              type="password"
+              name="contrasenia"
+              placeholder="Contraseña"
+              value={formData.contrasenia}
+              onChange={handleChange}
+              className="w-full border-none bg-transparent outline-none placeholder:italic focus:outline-none"
+              required
+            />
+          </div>
+
+          <div className="w-full transform border-b-2 bg-transparent text-lg text-gray-400 duration-300 focus-within:border-indigo-500">
+            <select
+              name="rol"
+              value={formData.rol}
+              onChange={handleChange}
+              className="w-full bg-transparent border-none outline-none appearance-none placeholder:italic text-white"
+              required
+            >
+              <option value="" disabled className="text-gray-500">-- Seleccione un rol --</option>
+              <option value="alumno" className="text-black">Alumno</option>
+              <option value="docente" className="text-black">Docente</option>
+              <option value="admin" className="text-black">Administrador</option>
+            </select>
+          </div>
+
           <button
             type="submit"
             className="w-full bg-indigo-600 text-white py-2 rounded hover:bg-indigo-700"

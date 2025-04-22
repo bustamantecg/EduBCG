@@ -3,6 +3,9 @@ import LoginPage from "../pages/auth/LoginPage";
 import Dashboard from "../pages/Dashboard";
 import PrivateRoute from "./PrivateRoute";
 import RegisterPage from "../pages/auth/RegisterPage";
+import AdminPanel from "../pages/admin/AdminPanel";
+import DocentePanel from "../pages/docente/DocentePanel";
+import AlumnoPanel from "../pages/alumno/AlumnoPanel";
 
 const AppRouter = () => {
   return (
@@ -13,11 +16,19 @@ const AppRouter = () => {
 
         {/* Rutas protegidas */}
         <Route element={<PrivateRoute />}>
-          <Route path="/" element={
-            <PrivateRoute>
-              <Dashboard />
-            </PrivateRoute>
-          } />
+          <Route path="/" element={<Dashboard />} />
+        </Route>
+
+        <Route element={<PrivateRoute allowedRoles={["admin"]} />}>
+          <Route path="/admin" element={<AdminPanel />} />
+        </Route>
+
+        <Route element={<PrivateRoute allowedRoles={["docente"]} />}>
+          <Route path="/docente" element={<DocentePanel />} />
+        </Route>
+
+        <Route element={<PrivateRoute allowedRoles={["alumno"]} />}>
+          <Route path="/alumno" element={<AlumnoPanel />} />
         </Route>
 
         {/* Página no encontrada */}

@@ -1,9 +1,8 @@
-// middlewares/authMiddleware.js
 import jwt from 'jsonwebtoken';
 import dotenv from "dotenv";
 dotenv.config();
 
-const SECRET = process.env.JWT_SECRET; // 🔐 Recomendación: ponerlo en .env como JWT_SECRET
+const SECRET = process.env.JWT_SECRET;
 
 // Verifica que el token JWT sea válido
 export const verificarToken = (req, res, next) => {

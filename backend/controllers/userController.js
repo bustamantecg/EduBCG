@@ -67,7 +67,9 @@ export const loginUsuario = async (req, res) => {
 // Obtener todos los usuarios (solo admin)
 export const obtenerUsuarios = async (req, res) => {
   try {
-    const usuarios = await User.find().populate('perfiles');
+    const usuarios = await User.find()
+    .sort({ nombre: 1 }) // ordno ascendente por nombre
+    .populate('perfiles'); 
     res.status(200).json(usuarios);
   } catch (error) {
     res.status(500).json({ mensaje: 'Error al obtener usuarios', error });
