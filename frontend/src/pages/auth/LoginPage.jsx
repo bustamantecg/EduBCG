@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
 import { Link } from "react-router-dom";
+import Footer from "../../components/Footer";
 
 const LoginPage = () => {
   const { login } = useAuth();
@@ -28,7 +29,7 @@ const LoginPage = () => {
         <form
           onSubmit={handleSubmit}>
           <section className="flex w-[30rem] flex-col space-y-10">
-            <div className="text-center text-4xl font-medium">Ingresar</div>
+            <div className="text-center text-4xl font-medium text-indigo-600">Ingresar</div>
             {error && (
               <div className="bg-red-100 text-red-700 p-2 rounded mb-4 text-sm text-center">
                 {error}
@@ -70,11 +71,12 @@ const LoginPage = () => {
               </Link>
             </p>
             <p className="text-center text-lg">
-              <a href="#" className="font-medium text-indigo-500 underline-offset-4 hover:underline"> Inicio</a>
+              <a href="/" className="font-medium text-indigo-500 underline-offset-4 hover:underline"> Inicio</a>
             </p>
           </section>
         </form>
       </main>
+      
     </>
   );
 };

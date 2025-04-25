@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import Footer from "../../components/Footer";
 
 const RegisterPage = () => {
   const navigate = useNavigate();
@@ -9,6 +10,7 @@ const RegisterPage = () => {
     nombre: "",
     correo: "",
     contrasenia: "",
+    confirmarContrasenia: "",
     rol: ""
   });
 
@@ -20,6 +22,24 @@ const RegisterPage = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const { contrasenia, confirmarContrasenia } = formData;
+    const regexPassword = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$/;
+
+    if (!regexPassword.test(contrasenia)) {
+      setError("La contraseña debe tener al menos 8 caracteres, una mayúscula, una minúscula y un número.");
+      return;
+    }
+
+    // Validar longitud mínima
+    if (formData.contrasenia.length < 8) {
+      setError("La contraseña debe tener al menos 8 caracteres");
+      return;
+    }
+
+    if (formData.contrasenia !== formData.confirmarContrasenia) {
+      setError("Las contraseñas no coinciden");
+      return;
+    }
     try {
       await axios.post("http://localhost:5000/api/usuarios/registro", formData);
       navigate("/login");
@@ -29,6 +49,7 @@ const RegisterPage = () => {
   };
 
   return (
+    <>
     <main className="mx-auto flex min-h-screen w-full items-center justify-center bg-gray-900 text-white">
       <form
         onSubmit={handleSubmit} className="space-y-4">
@@ -65,6 +86,19 @@ const RegisterPage = () => {
               value={formData.contrasenia}
               onChange={handleChange}
               className="w-full border-none bg-transparent outline-none placeholder:italic focus:outline-none"
+              title="requiere al menos 8 caracteres, incluyendo numeros, caracteres en mayúsculas, caracteres en minúsculas"
+              required
+            />
+          </div>
+
+          <div className="w-full transform border-b-2 bg-transparent text-lg duration-300 focus-within:border-indigo-500">
+            <input
+              type="password"
+              name="confirmarContrasenia"
+              placeholder="Repetir contraseña"
+              value={formData.confirmarContrasenia}
+              onChange={handleChange}
+              className="w-full border-none bg-transparent outline-none placeholder:italic focus:outline-none"              
               required
             />
           </div>
@@ -100,6 +134,8 @@ const RegisterPage = () => {
         </section>
       </form>
     </main>
+    
+    </>
   );
 };
 

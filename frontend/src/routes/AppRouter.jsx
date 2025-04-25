@@ -6,13 +6,24 @@ import RegisterPage from "../pages/auth/RegisterPage";
 import AdminPanel from "../pages/admin/AdminPanel";
 import DocentePanel from "../pages/docente/DocentePanel";
 import AlumnoPanel from "../pages/alumno/AlumnoPanel";
+import NotFound from "../pages/NotFound";
+import PublicLayout from "../pages/public/PublicLayout";
+import HomePage from "../pages/public/HomePage";
+import Contacto from "../pages/public/Contacto";
+import About from "../pages/public/About";
 
 const AppRouter = () => {
   return (
     <Router>
       <Routes>
-        <Route path="/login" element={<LoginPage />} />
-        <Route path="/register" element={<RegisterPage />} />
+        {/* Layout público */}
+        <Route element={<PublicLayout />}>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/register" element={<RegisterPage />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/contacto" element={<Contacto />} />
+        </Route>
 
         {/* Rutas protegidas */}
         <Route element={<PrivateRoute />}>
@@ -32,7 +43,7 @@ const AppRouter = () => {
         </Route>
 
         {/* Página no encontrada */}
-        <Route path="*" element={<h1 className="text-center mt-10 text-2xl">404 - Página no encontrada</h1>} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </Router>
   );

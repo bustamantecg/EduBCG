@@ -1,6 +1,7 @@
 // src/components/Navbar.jsx
 import { useAuth } from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
+import ThemeSwitcher from "./ThemeSwitcher";
 
 const Navbar = () => {
   const { usuario, logout } = useAuth();
@@ -13,7 +14,10 @@ const Navbar = () => {
 
   return (
     <nav className="bg-blue-600 text-white flex justify-between items-center p-4 shadow-md">
-      <div className="text-xl font-semibold">Panel de Control</div>
+      <div>
+        <h1 className="text-2xl">Cambia el tema 🎨</h1>
+        <ThemeSwitcher />
+      </div>
       <div className="flex items-center gap-4">
         <span>Hola, {usuario?.nombre}</span>
         <button
