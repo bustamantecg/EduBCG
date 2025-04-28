@@ -23,7 +23,8 @@ const RegisterPage = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const { contrasenia, confirmarContrasenia } = formData;
-    const regexPassword = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$/;
+    //const regexPassword = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$/;
+    const regexPassword = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/;
 
     if (!regexPassword.test(contrasenia)) {
       setError("La contraseña debe tener al menos 8 caracteres, una mayúscula, una minúscula y un número.");
@@ -114,7 +115,7 @@ const RegisterPage = () => {
               <option value="" disabled className="text-gray-500">-- Seleccione un rol --</option>
               <option value="alumno" className="text-black">Alumno</option>
               <option value="docente" className="text-black">Docente</option>
-              <option value="admin" className="text-black">Administrador</option>
+             {/*  <option value="admin" className="text-black">Administrador</option>*/}
             </select>
           </div>
 

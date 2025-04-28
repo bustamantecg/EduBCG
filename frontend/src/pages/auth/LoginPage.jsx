@@ -1,23 +1,31 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
 import { Link } from "react-router-dom";
-import Footer from "../../components/Footer";
 
 const LoginPage = () => {
-  const { login } = useAuth();
+  const { login, usuario } = useAuth();
   const navigate = useNavigate();
 
   const [correo, setCorreo] = useState("");
   const [contrasenia, setContrasenia] = useState("");
   const [error, setError] = useState(null);
 
+  useEffect(() => {
+    if (usuario) {
+      const rolUsuario = usuario.rol;
+      if (rolUsuario === "admin") navigate("/admin");
+      else if (rolUsuario === "docente") navigate("/docente");
+      else if (rolUsuario === "alumno") navigate("/alumno");
+      else navigate("/");
+    }
+  }, [usuario]);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError(null);
     try {
       await login(correo, contrasenia);
-      navigate("/");
     } catch (err) {
       setError(err);
     }

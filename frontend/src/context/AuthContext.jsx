@@ -21,11 +21,12 @@ export const AuthProvider = ({ children }) => {
 
   const login = async (correo, contrasenia) => {
     try {
-      const { data } = await axios.post("http://localhost:5000/api/usuarios/login", {
+      
+     const { data } = await axios.post("http://localhost:5000/api/usuarios/login", {
         correo,
         contrasenia,
       });
-
+    
       localStorage.setItem("token", data.token);
       localStorage.setItem("usuario", JSON.stringify(data.usuario));
       axios.defaults.headers.common["Authorization"] = `Bearer ${data.token}`;

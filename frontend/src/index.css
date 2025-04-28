@@ -15,7 +15,10 @@
     background-color: white;
     color: black;
   }
-  
+  [data-theme="dark"] {
+    background-color:black ;
+    color: blue;
+  }
   [data-theme="synthwave"] {
     background-color: #2d2d2d;
     color: #ff00ff;

@@ -9,7 +9,7 @@ const ThemeSwitcher = () => {
   }, [theme]);
 
   const toggleTheme = () => {
-    setTheme(theme === "light" ? "synthwave" : "light");
+    setTheme(theme === "light" ? "dark" : "light");
   };
 
   return (
@@ -18,9 +18,9 @@ const ThemeSwitcher = () => {
         type="checkbox"
         className="toggle theme-controller"
         onChange={toggleTheme}
-        checked={theme === "synthwave"}
+        checked={theme === "dark"}
       />
-      <span>{theme === "synthwave" ? "🌙" : "☀️"}</span>
+      <span>{theme === "dark" ? "🌙" : "☀️"}</span>
     </label>
   );
 };

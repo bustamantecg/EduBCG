@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import ThemeSwitcher from "./ThemeSwitcher";
 
 const Navbar = () => {
-  const { usuario, logout } = useAuth();
+  const { usuario, logout, isAuthenticated } = useAuth();
   const navigate = useNavigate();
 
   const handleLogout = () => {
@@ -19,13 +19,27 @@ const Navbar = () => {
         <ThemeSwitcher />
       </div>
       <div className="flex items-center gap-4">
-        <span>Hola, {usuario?.nombre}</span>
-        <button
-          onClick={handleLogout}
-          className="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-3 rounded"
-        >
-          Cerrar sesión
-        </button>
+
+        {isAuthenticated ? (
+          <>
+            <span>Hola, {usuario?.nombre}</span>
+            <button
+              onClick={handleLogout}
+              className="btn btn-dash btn-warning"
+            >
+              Cerrar sesión
+            </button>
+          </>
+        ) : (
+          <button
+            onClick={handleLogout}
+            className="btn btn-dash btn-primary"
+          >
+            Iniciar sesión
+          </button>
+        )
+        }
+
       </div>
     </nav>
   );

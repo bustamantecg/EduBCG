@@ -1,3 +1,4 @@
+import '../index.css'
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import LoginPage from "../pages/auth/LoginPage";
 import Dashboard from "../pages/Dashboard";
@@ -11,6 +12,9 @@ import PublicLayout from "../pages/public/PublicLayout";
 import HomePage from "../pages/public/HomePage";
 import Contacto from "../pages/public/Contacto";
 import About from "../pages/public/About";
+// Cursos
+import CursoList from "../pages/cursos/CursoList";
+import CursoForm from "../pages/cursos/CursoForm";
 
 const AppRouter = () => {
   return (
@@ -40,6 +44,12 @@ const AppRouter = () => {
 
         <Route element={<PrivateRoute allowedRoles={["alumno"]} />}>
           <Route path="/alumno" element={<AlumnoPanel />} />
+        </Route>
+
+        <Route element={<PrivateRoute allowedRoles={["admin", "docente"]} />}>
+          <Route path="/cursos" element={<CursoList />} />
+          <Route path="/cursos/nuevo" element={<CursoForm />} />
+          <Route path="/cursos/editar/:id" element={<CursoForm />} />
         </Route>
 
         {/* Página no encontrada */}
