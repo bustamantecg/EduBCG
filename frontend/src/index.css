@@ -16,8 +16,8 @@
     color: black;
   }
   [data-theme="dark"] {
-    background-color:black ;
-    color: blue;
+    background-color:rgb(24, 21, 192) ;
+    color: rgb(118, 116, 209);
   }
   [data-theme="synthwave"] {
     background-color: #2d2d2d;
