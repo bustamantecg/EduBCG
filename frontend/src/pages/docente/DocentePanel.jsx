@@ -3,7 +3,7 @@ import { useAuth } from "../../context/AuthContext";
 import axios from "axios";
 import { Link } from "react-router-dom";
 
-const AdminPanel = () => {
+const DocentePanel = () => {
   const { usuario, logout } = useAuth();
   const [usuarios, setUsuarios] = useState([]);
 
@@ -108,5 +108,5 @@ const AdminPanel = () => {
   );
 };
 
-export default AdminPanel;
+export default DocentePanel;
 

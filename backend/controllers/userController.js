@@ -67,7 +67,10 @@ export const loginUsuario = async (req, res) => {
 // Obtener todos los usuarios (solo admin)
 export const obtenerUsuarios = async (req, res) => {
   try {
-    const usuarios = await User.find()
+    const { rol } = req.query;
+    const filtro = rol ? { rol } : {}; // Si hay rol, filtra. Si no, devuelve todos.
+
+    const usuarios = await User.find(filtro)
     .sort({ nombre: 1 }) // ordno ascendente por nombre
     .populate('perfiles'); 
     res.status(200).json(usuarios);

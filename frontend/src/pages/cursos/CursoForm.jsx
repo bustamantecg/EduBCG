@@ -35,6 +35,10 @@ const CursoForm = () => {
   };
 
   return (
+    <>
+    <h1 className="text-2xl font-bold mb-6">Panel de Administración - Cursos</h1>
+    <h2 className="text-xl text-center font-semibold mb-4">{id ? "Actualizar" : "Crear"}</h2>  
+
     <form onSubmit={handleSubmit} className="max-w-md mx-auto p-4">
       <input
         type="text"
@@ -87,6 +91,7 @@ const CursoForm = () => {
         {id ? "Actualizar" : "Crear"} Curso
       </button>
     </form>
+    </>
   );
 };
 

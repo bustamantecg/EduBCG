@@ -15,15 +15,13 @@ import Contacto from "../pages/public/Contacto";
 import About from "../pages/public/About";
 
 // Cursos
-import CursoList from "../pages/cursos/CursoList";
-import CursoForm from "../pages/cursos/CursoForm";
+import CursoForm from     "../pages/cursos/CursoForm";
 import ListaUsuarios from "../pages/admin/ListaUsuarios";
+import ListaAlumnos from  "../pages/admin/ListaAlumnos";
+import ListaDocentes from "../pages/admin/ListaDocentes";
+import ListaCursos from   "../pages/admin/ListaCursos";
 
 // Admin (IMPORTANTE)
-
-
-
-
 const AppRouter = () => {
   return (
     <>
@@ -48,8 +46,10 @@ const AppRouter = () => {
           <Route path="/admin" element={<AdminPanel />}>
             <Route index element={<ListaUsuarios />} />
             <Route path="user/listado" element={<ListaUsuarios />} />
-            <Route path="cursos" element={<CursoList />} />
+            <Route path="cursos" element={<ListaCursos />} />
             <Route path="cursos/nuevo" element={<CursoForm />} />
+            <Route path="alumnos" element={<ListaAlumnos />} />
+            <Route path="docentes" element={<ListaDocentes />} />
           </Route>
         </Route>
 
@@ -65,7 +65,7 @@ const AppRouter = () => {
 
         {/* Rutas generales de cursos para admin y docente */}
         <Route element={<PrivateRoute allowedRoles={["admin", "docente"]} />}>
-          <Route path="/cursos" element={<CursoList />} />
+          <Route path="/cursos" element={<ListaCursos />} />
           <Route path="/cursos/nuevo" element={<CursoForm />} />
           <Route path="/cursos/editar/:id" element={<CursoForm />} />
         </Route>
