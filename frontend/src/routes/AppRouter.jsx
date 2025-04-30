@@ -48,6 +48,7 @@ const AppRouter = () => {
             <Route path="user/listado" element={<ListaUsuarios />} />
             <Route path="cursos" element={<ListaCursos />} />
             <Route path="cursos/nuevo" element={<CursoForm />} />
+            <Route path="cursos/:id" element={<CursoForm />} />
             <Route path="alumnos" element={<ListaAlumnos />} />
             <Route path="docentes" element={<ListaDocentes />} />
           </Route>
@@ -68,6 +69,7 @@ const AppRouter = () => {
           <Route path="/cursos" element={<ListaCursos />} />
           <Route path="/cursos/nuevo" element={<CursoForm />} />
           <Route path="/cursos/editar/:id" element={<CursoForm />} />
+
         </Route>
 
         {/* Página no encontrada */}

@@ -75,7 +75,7 @@ const MySwal = withReactContent(Swal);
                 <td className="px-4 py-2">{format(new Date(u.createdAt), "yyyy-MM-dd HH:mm:ss")}</td>
                 <td className="px-4 py-2">
                   <button
-                    className="btn btn-xs btn-soft btn-secondary"
+                    className="btn btn-xs btn-soft btn-error"
                     title="Eliminar Docentes"
                     onClick={() => handleEliminar(u._id)}
                   >

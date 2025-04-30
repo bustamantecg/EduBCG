@@ -1,5 +1,6 @@
-import { obtenerCursos, eliminarCurso } from "../../services/cursoService";
+import { obtenerCursos, eliminarCurso, actualizarCurso} from "../../services/cursoService";
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
@@ -8,6 +9,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { format } from "date-fns";
 
 const ListaCursos = () => {
+  const navigate = useNavigate();
   const MySwal = withReactContent(Swal);
   const [cursos, setCursos] = useState([]);
 
@@ -53,7 +55,7 @@ const ListaCursos = () => {
   return (
     <>
       <h1 className="text-2xl font-bold mb-6">Panel de Administración - Lista de Cursos</h1>
-      <h2 className="text-xl font-semibold mb-4">Cursos registrados </h2>  
+      <h2 className="text-xl font-semibold mb-4">Cursos registrados </h2>
       <div className="overflow-x-auto">
         <table className="table table-md">
           <thead>
@@ -71,17 +73,25 @@ const ListaCursos = () => {
             {cursos.length > 0 ? (
               cursos.map((curso) => (
                 <tr key={curso._id} className="border-t hover:bg-gray-100">
-                  <td className="px-4 py-2">{curso.nombre}</td>
+                  <td className="px-4 py-2"><strong>{curso.nombre}</strong></td>
                   <td className="px-4 py-2">{curso.nivel}</td>
                   <td className="px-4 py-2">{curso.duracion}</td>
                   <td className="px-4 py-2">{curso.portada}</td>
                   <td className="px-4 py-2">{curso.urlVideo}</td>
                   <td className="px-4 py-2">{format(new Date(curso.createdAt), "yyyy-MM-dd HH:mm:ss")}</td>
                   <td className="px-4 py-2">
-
+                    <button
+                      onClick={() => navigate(`/admin/cursos/${curso._id}`)}
+                      className="btn btn-xs btn-error"
+                      title="Editar Curso"
+                    >
+                      <i className="bi bi-pencil-square"></i>
+                    </button>
+                    &nbsp;&nbsp;
                     <button
                       onClick={() => handleEliminar(curso._id)}
-                      className="btn btn-sm btn-error"
+                      className="btn btn-xs btn-error"
+                      title="Eliminar Curso"
                     >
                       <i className="bi bi-trash"></i>
                     </button>
@@ -98,7 +108,7 @@ const ListaCursos = () => {
           </tbody>
         </table>
       </div>
-    
+
     </>
   );
 };

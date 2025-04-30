@@ -31,7 +31,7 @@ const CursoForm = () => {
     } else {
       await crearCurso(curso);
     }
-    navigate("/cursos"); // Redirecciona al listado
+    navigate("/admin/cursos"); // Redirecciona al listado
   };
 
   return (
