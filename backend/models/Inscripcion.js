@@ -1,31 +1,26 @@
 import mongoose from 'mongoose';
 
-const evaluacionSchema = new mongoose.Schema({
+const inscripcionSchema = new mongoose.Schema({
   curso: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Curso',
     required: true
   },
-  perfil: {
+  alumno: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'Perfil',
+    ref: 'User', 
     required: true
   },
-  nota: {
+  notaFinal: {
     type: Number,
-    required: true,
     min: 0,
-    max: 10
+    max: 10,
+    default: null
   },
-  docente: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'User',
-    required: true
-  },
-  fecha: {
+  fechaInscripcion: {
     type: Date,
     default: Date.now
   }
 }, { timestamps: true });
 
-export default mongoose.model('Evaluacion', evaluacionSchema);
+export default mongoose.model('Inscripcion', inscripcionSchema);

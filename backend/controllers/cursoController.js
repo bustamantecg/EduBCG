@@ -8,7 +8,7 @@ export const obtenerCursos = async (req, res) => {
       const skip = (page - 1) * limit;
   
       const [cursos, total] = await Promise.all([
-        Curso.find().skip(skip).limit(limit),
+        Curso.find().populate('docente', 'nombre correo rol').skip(skip).limit(limit),
         Curso.countDocuments()
       ]);
   
@@ -27,7 +27,7 @@ export const obtenerCursos = async (req, res) => {
 // GET /api/cursos/:id
 export const obtenerCursoPorId = async (req, res) => {
   try {
-    const curso = await Curso.findById(req.params.id);
+    const curso = await Curso.findById(req.params.id).populate('docente', 'nombre correo rol');
     if (!curso) return res.status(404).json({ mensaje: 'Curso no encontrado' });
     res.json(curso);
   } catch (error) {
@@ -38,19 +38,19 @@ export const obtenerCursoPorId = async (req, res) => {
 // POST /api/cursos
 export const crearCurso = async (req, res) => {
     try {
-      const { nombre, nivel, duracion, urlVideo, portada } = req.body;
+      const { nombre, nivel, duracion, urlVideo, portada, docente } = req.body;
   
       // Validación básica de campos
-      if (!nombre || !nivel || !duracion || !urlVideo || !portada) {
+      if (!nombre || !nivel || !duracion || !urlVideo || !portada || !docente) {
         return res.status(400).json({ mensaje: 'Todos los campos son obligatorios' });
       }
   
-      const nuevoCurso = new Curso({ nombre, nivel, duracion, urlVideo, portada });
+      const nuevoCurso = new Curso({ nombre, nivel, duracion, urlVideo, portada, docente });
       const cursoGuardado = await nuevoCurso.save();
   
       res.status(201).json(cursoGuardado);
     } catch (error) {
-      console.error('Error al crear el curso:', error);
+      console.error('Error al crear el curso bckend:', error);
       res.status(500).json({ mensaje: 'Error al crear el curso', error });
     }
   };

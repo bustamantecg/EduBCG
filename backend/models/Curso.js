@@ -21,6 +21,11 @@ const cursoSchema = new mongoose.Schema({
   portada: {
     type: String, // URL de la imagen
     required: true
+  },
+  docente: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User',
+    required: true
   }
 }, { timestamps: true });
 

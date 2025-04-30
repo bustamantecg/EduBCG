@@ -8,11 +8,10 @@ import connectDB from "./config/db.js";
 
 // Rutas
 import rolRoutes from "./routes/rolRoutes.js";
-import evaluacionRoutes from "./routes/evaluacionRoutes.js";
 import userRoutes from "./routes/userRoutes.js";
 import perfilRoutes from "./routes/perfilRoutes.js";
 import cursoRoutes from "./routes/cursoRoutes.js";
-
+import inscripcionRoutes from "./routes/inscripcionRoutes.js";
 
 dotenv.config();
 const app = express();
@@ -27,10 +26,10 @@ app.use(express.json());
 
 // Rutas API
 app.use("/api/roles", rolRoutes);             // Pruebas de acceso según rol
-app.use("/api/evaluaciones", evaluacionRoutes); // Evaluaciones de cursos
 app.use("/api/usuarios", userRoutes);         // Usuarios para Login, registro
 app.use("/api/perfiles", perfilRoutes);       // Perfiles asociados al usuario
 app.use("/api/cursos", cursoRoutes);          // Gestión de cursos
+app.use("/api/inscripciones", inscripcionRoutes); // para las inscip 
 
 // Escuchar servidor
 app.listen(PORT, () => {

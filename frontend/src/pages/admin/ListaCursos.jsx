@@ -1,4 +1,4 @@
-import { obtenerCursos, eliminarCurso, actualizarCurso} from "../../services/cursoService";
+import { obtenerCursos, eliminarCurso, actualizarCurso } from "../../services/cursoService";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
@@ -21,7 +21,6 @@ const ListaCursos = () => {
     try {
       const res = await axios.get('http://localhost:5000/api/cursos');
       //const data = await res.json();
-      console.log(res);
       setCursos(res.data.cursos); // Asegurate que res.data es un array de cursos
     } catch (error) {
       console.error("Error al cargar los cursos.", error);
@@ -66,6 +65,7 @@ const ListaCursos = () => {
               <th className="px-4 py-2">Portada</th>
               <th className="px-4 py-2">Video</th>
               <th className="px-4 py-2">Alta</th>
+              <th className="px-4 py-2">Docente</th>
               <th className="px-4 py-2">Acciones</th>
             </tr>
           </thead>
@@ -79,6 +79,16 @@ const ListaCursos = () => {
                   <td className="px-4 py-2">{curso.portada}</td>
                   <td className="px-4 py-2">{curso.urlVideo}</td>
                   <td className="px-4 py-2">{format(new Date(curso.createdAt), "yyyy-MM-dd HH:mm:ss")}</td>
+                  <td className="px-4 py-2">
+                    {curso.docente ? (
+                      <>
+                        <strong>{curso.docente.nombre}</strong><br />
+                        <span className="text-sm text-gray-600">{curso.docente.correo}</span>
+                      </>
+                    ) : (
+                      <em className="text-gray-500">Sin asignar</em>
+                    )}
+                  </td>
                   <td className="px-4 py-2">
                     <button
                       onClick={() => navigate(`/admin/cursos/${curso._id}`)}
