@@ -36,8 +36,8 @@ const HomePage = () => {
       <div>
         <h2 className="text-2xl font-semibold mb-6 text-center">Nuestros Cursos</h2>
         <div className="grid md:grid-cols-3 gap-6">
-          {cursos.map((curso) => (
-            <div key={curso.id} className="bg-white shadow-md rounded-lg overflow-hidden hover:shadow-xl transition-shadow">
+          {cursos.map((curso, key) => (
+            <div key={key} className="bg-white shadow-md rounded-lg overflow-hidden hover:shadow-xl transition-shadow">
               <img src={curso.imagen} alt={curso.nombre} className="h-40 w-full object-cover" />
               <div className="p-4">
                 <h3 className="text-xl font-bold mb-2">{curso.nombre}</h3>
@@ -61,8 +61,8 @@ const HomePage = () => {
         <h2 className="text-2xl font-semibold mb-6 text-center">Conocé a Nuestros Docentes</h2>
 
         <div className="grid md:grid-cols-3 gap-6">
-          {docentes.map((docente, index) => (
-            <div className="card bg-base-100 w-96 shadow-sm">
+          {docentes.map((docente, key) => (
+            <div key={key} className="card bg-base-100 w-96 shadow-sm">
               <figure className="px-10 pt-10">
                 <img
                   src={docente.imagen}

@@ -20,8 +20,7 @@ export const AuthProvider = ({ children }) => {
   }, []);
 
   const login = async (correo, contrasenia) => {
-    try {
-      
+    try {      
      const { data } = await axios.post("http://localhost:5000/api/usuarios/login", {
         correo,
         contrasenia,

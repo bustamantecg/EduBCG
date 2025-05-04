@@ -2,19 +2,16 @@ import express from "express";
 import {
   listarInscripcionesAlumno,
   inscribirseACurso,
-  darseDeBaja
+  darseDeBaja,
+  obtenerMisAlumnos,
+  actualizarNotaFinal
 } from "../controllers/inscripcionController.js";
 
-import { verificarToken, verificarRol } from "../middleware/authMiddleware.js";
+import { verificarToken, verificarRol } from "../middlewares/authMiddleware.js";
 
 const router = express.Router();
 
-router.get(
-  "/alumno/cursos",
-  verificarToken,
-  verificarRol(['alumno']),
-  listarInscripcionesAlumno
-);
+router.get("/alumno/cursos", verificarToken, verificarRol(['alumno']), listarInscripcionesAlumno);
 
 router.post(
   "/alumno/inscripciones",
@@ -24,10 +21,17 @@ router.post(
 );
 
 router.delete(
-  "/alumno/inscripciones/:id",
-  verificarToken,
-  verificarRol(['alumno']),
+  "/alumno/inscripciones/:id", verificarToken, verificarRol(['alumno']),
   darseDeBaja
 );
+
+router.get("/mis-alumnos", verificarToken, verificarRol(['docente']),
+  obtenerMisAlumnos
+);
+
+router.put('/:id/actualizar-nota', verificarToken,  verificarRol(['docente']), // o admin, según tu lógica
+  actualizarNotaFinal
+);
+
 
 export default router;

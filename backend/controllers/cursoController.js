@@ -77,3 +77,17 @@ export const eliminarCurso = async (req, res) => {
     res.status(400).json({ mensaje: 'Error al eliminar el curso' });
   }
 };
+
+// get api/cursos/docente/:id
+export const obtenerCursoPorDocente = async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    const cursos = await Curso.find({ docente: id }).populate('docente', 'nombre correo');
+    res.json(cursos);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ mensaje: 'Error al buscar los cursos del docente' });
+  }
+};
+

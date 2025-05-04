@@ -7,19 +7,10 @@ const AdminPanel = () => {
 
   return (
     <div className="flex min-h-screen">
-      
       {/* MENÚ LATERAL */}
       <div className="w-64 bg-base-200 p-6">
         <h3 className="text-2xl font-bold mb-6">Admin {usuario?.nombre}</h3>
-
         <ul className="menu bg-base-100 rounded-box">
-          {/* Cerrar sesión */}
-          <li className="mb-2">
-            <button onClick={logout} className="btn btn-outline btn-error rounded-full">
-              Cerrar sesión
-            </button>
-          </li>
-
           {/* Cursos */}
           <li>
             <details open>
@@ -27,6 +18,7 @@ const AdminPanel = () => {
               <ul>
                 <li><Link to="cursos/nuevo">Agregar nuevo</Link></li>
                 <li><Link to="cursos">Listar cursos</Link></li>
+                <li><Link to="alumnos">Listar Inscripciones</Link></li>
               </ul>
             </details>
           </li>
@@ -35,8 +27,7 @@ const AdminPanel = () => {
           <li>
             <details>
               <summary>Docentes</summary>
-              <ul>
-                <li><Link to="docentes/nuevo">Agregar nuevo</Link></li>
+              <ul>               
                 <li><Link to="docentes">Listar docentes</Link></li>
               </ul>
             </details>
@@ -47,7 +38,6 @@ const AdminPanel = () => {
             <details>
               <summary>Alumnos</summary>
               <ul>
-                <li><Link to="alumnos/nuevo">Agregar nuevo</Link></li>
                 <li><Link to="alumnos">Listar alumnos</Link></li>
               </ul>
             </details>
@@ -61,15 +51,19 @@ const AdminPanel = () => {
               </ul>
             </details>
           </li>
-          <li><ThemeSwitcher /></li>
+          <li className="mb-2"><ThemeSwitcher /></li>
+          <li className="mb-2"><Link to="/admin/cambiar-password" className="btn btn-outline btn-warning rounded-full">Cambiar contraseña</Link></li>          
+          <li className="mb-2">
+            <button onClick={logout} className="btn btn-outline btn-error rounded-full">
+              Cerrar sesión
+            </button>
+          </li>          
         </ul>
       </div>
-
       {/* CONTENIDO PRINCIPAL */}
       <div className="flex-1 p-6">
         <Outlet />
-      </div>
-      
+      </div>      
     </div>
   );
 };

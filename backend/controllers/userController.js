@@ -2,6 +2,7 @@ import User from '../models/User.js';
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcryptjs';
 import dotenv from "dotenv";
+
 dotenv.config();
 
 const SECRET = process.env.JWT_SECRET;
@@ -47,7 +48,6 @@ export const loginUsuario = async (req, res) => {
     if (!coincide) {
       return res.status(401).json({ mensaje: 'Contraseña incorrecta' });
     }
-
     const token = jwt.sign(
       {
         id: usuario._id,
@@ -93,5 +93,28 @@ export const eliminarUsuario = async (req, res) => {
     res.json({ mensaje: 'Usuario eliminado correctamente' });
   } catch (error) {
     res.status(400).json({ mensaje: 'Error al eliminar Usuario' });
+  }
+};
+
+
+export const cambiarPassword = async (req, res) => {
+  const { actualPassword, nuevaPassword } = req.body;
+  const userId = req.user.id;
+
+  try {
+    const user = await User.findById(userId);
+    if (!user) return res.status(404).json({ mensaje: 'Usuario no encontrado' });
+
+    const passwordValida = await bcrypt.compare(actualPassword, user.contrasenia);
+    if (!passwordValida) return res.status(401).json({ mensaje: 'Contraseña actual incorrecta' });
+
+    const nuevaPasswordHash = await bcrypt.hash(nuevaPassword, 10);
+    user.contrasenia = nuevaPasswordHash;
+    await user.save();
+
+    res.json({ mensaje: 'Contraseña actualizada correctamente' });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ mensaje: 'Error al cambiar la contraseña' });
   }
 };
