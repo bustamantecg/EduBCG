@@ -29,13 +29,14 @@ const PanelAlumno = () => {
               <summary>Configuración</summary>
               <ul>
                 <li><Link to="perfil">Mi perfil</Link></li>
+                <li><Link to="/">Home</Link></li>
                 <li><Link to="/alumno/cambiar-password">Cambiar contraseña</Link></li>
               </ul>
             </details>
           </li>
 
-          <li className="mb-2"><ThemeSwitcher /></li>
-          <li className="mb-2"><Link to="/alumno/cambiar-password" className="btn btn-outline btn-primary rounded-full btn-sm">Cambiar contraseña</Link></li>
+          <li className="mb-2 items-center"><ThemeSwitcher /></li>
+          <li className="mb-2"><Link to="/alumno/cambiar-password" className="btn btn-outline btn-primary rounded-full">Cambiar contraseña</Link></li>
           {/* Cerrar sesión */}
           <li className="mb-2">
             <button onClick={logout} className="btn btn-outline btn-error rounded-full">

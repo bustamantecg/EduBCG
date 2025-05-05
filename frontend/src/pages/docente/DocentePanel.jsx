@@ -31,9 +31,9 @@ const DocentePanel = () => {
               </ul>
             </details>
           </li>
-
+          <li><Link to="/">Home</Link></li>
           <li className="mb-2"><ThemeSwitcher /></li>
-          <li className="mb-2"><Link to="/docente/cambiar-password" className="btn btn-outline btn-sm rounded-full">Cambiar contraseña</Link></li>
+          <li className="mb-2"><Link to="/docente/cambiar-password" className="btn btn-outline btn-primary rounded-full">Cambiar contraseña</Link></li>
           {/* Cerrar sesión */}
           <li className="mb-2">
             <button onClick={logout} className="btn btn-outline btn-error rounded-full">

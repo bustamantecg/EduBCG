@@ -23,59 +23,52 @@ const HomePage = () => {
     <section className="p-8 space-y-16">
       <div className="text-center">
         <h1 className="text-4xl font-bold mb-4">Bienvenido al Instituto BCG</h1>
-        
         <p className="text-base leading-relaxed">
-              En el Instituto BCG, estamos comprometidos con la formación integral de profesionales,
-              docentes, emprendedores y personas que buscan desarrollarse personal y laboralmente.
-              Nuestra institución se destaca por ofrecer programas de capacitación innovadores,
-              adaptados a las necesidades reales del mercado y las demandas sociales actuales.
-            </p>
+          En el Instituto BCG, estamos comprometidos con la formación integral de profesionales,
+          docentes, emprendedores y personas que buscan desarrollarse personal y laboralmente.
+          Nuestra institución se destaca por ofrecer programas de capacitación innovadores,
+          adaptados a las necesidades reales del mercado y las demandas sociales actuales.
+        </p>
       </div>
 
       {/* Sección de cursos */}
-      <div>
-        <h2 className="text-2xl font-semibold mb-6 text-center">Nuestros Cursos</h2>
-        <div className="grid md:grid-cols-3 gap-6">
-          {cursos.map((curso, key) => (
-            <div key={key} className="bg-white shadow-md rounded-lg overflow-hidden hover:shadow-xl transition-shadow">
-              <img src={curso.imagen} alt={curso.nombre} className="h-40 w-full object-cover" />
-              <div className="p-4">
-                <h3 className="text-xl font-bold mb-2">{curso.nombre}</h3>
-                <p className="text-gray-600 mb-4">{curso.descripcion}</p>
-                {/*    <Link
-                  to={`/preinscripcion/${curso.id}`}
-                  className="inline-block bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
-                >
-                  Preinscribirme
-                </Link>
-               */}
-                <button className="btn btn-outline btn-info">Info</button>
-              </div>
+      <h2 className="text-2xl font-semibold mb-6 text-center">Conocé nuestros Cursos y Capacitaciones</h2>
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        {cursos.map((curso, key) => (
+          <div key={key} className="card bg-base-100 shadow-sm">
+            <figure className="px-10 pt-10">
+              <img
+                src={curso.imagen}
+                alt={curso.nombre}
+                className="rounded-xl w-full h-40 object-cover"  // Ajuste aquí
+              />
+            </figure>
+            <div className="card-body items-center text-center">
+              <h2 className="card-title">{curso.nombre}</h2>
+              <p>{curso.descripcion}</p>
             </div>
-          ))}
-        </div>
+          </div>
+        ))}
       </div>
 
       {/* Sección de docentes */}
-      <div>
-        <h2 className="text-2xl font-semibold mb-6 text-center">Conocé a Nuestros Docentes</h2>
-
-        <div className="grid md:grid-cols-3 gap-6">
-          {docentes.map((docente, key) => (
-            <div key={key} className="card bg-base-100 w-96 shadow-sm">
-              <figure className="px-10 pt-10">
-                <img
-                  src={docente.imagen}
-                  alt={docente.nombre}
-                  className="rounded-xl" />
-              </figure>
-              <div className="card-body items-center text-center">
-                <h2 className="card-title">{docente.nombre}</h2>
-                <p>{docente.especialidad}</p>
-              </div>
+      <h2 className="text-2xl font-semibold mb-6 text-center">Conocé a Nuestros Docentes</h2>
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        {docentes.map((docente, key) => (
+          <div key={key} className="card bg-base-100 shadow-sm">
+            <figure className="px-10 pt-10">
+              <img
+                src={docente.imagen}
+                alt={docente.nombre}
+                className="rounded-xl w-full h-40 object-cover"  // Ajuste aquí
+              />
+            </figure>
+            <div className="card-body items-center text-center">
+              <h2 className="card-title">{docente.nombre}</h2>
+              <p>{docente.especialidad}</p>
             </div>
-          ))}
-        </div>
+          </div>
+        ))}
       </div>
     </section>
   );

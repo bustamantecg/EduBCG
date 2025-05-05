@@ -6,7 +6,7 @@ const About = () => {
       <div className="max-w-6xl mx-auto">
         <h1 className="text-4xl font-bold text-center mb-10">Sobre Nosotros</h1>
 
-        <div className="grid md:grid-cols-2 gap-8 items-start">
+        <div className="grid md:grid-cols-2 gap-8 items-start text-justify">
           {/* Texto descriptivo */}
           <div className="space-y-4">
             <h2 className="text-2xl font-semibold">
@@ -53,23 +53,26 @@ const About = () => {
               className="rounded-lg shadow-lg w-full object-cover transform transition-transform duration-500 hover:scale-105"
             />
           </div>
+        </div>
 
-
+        {/* Sección del video */}
+        <div className="mt-10"> {/* Agregado para separar el video */}
+          <h2 className="text-2xl font-semibold mb-4 text-center">Video de Presentación</h2>
+          <div className="relative pt-[56.25%]"> {/* Proporción 16:9 */}
+            <iframe
+              className="absolute top-0 left-0 w-full h-full rounded-lg shadow-md"
+              src="https://www.youtube.com/embed/fqMJeCn2PsM?si=YNrdZBZqn55Q4MHN"
+              title="YouTube video player"
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              referrerPolicy="strict-origin-when-cross-origin"
+              allowFullScreen
+            ></iframe>
+          </div>
         </div>
       </div>
-      <div className="aspect-w-16 aspect-h-9">
-              <iframe
-                className="w-full h-full rounded-lg shadow-md"
-                src="https://www.youtube.com/embed/fqMJeCn2PsM?si=YNrdZBZqn55Q4MHN"
-                title="YouTube video player"
-                frameBorder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                referrerPolicy="strict-origin-when-cross-origin"
-                allowFullScreen
-              ></iframe>
-            </div>
     </div>
   );
 };
 
-export default About;  
+export default About;

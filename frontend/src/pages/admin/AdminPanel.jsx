@@ -11,6 +11,7 @@ const AdminPanel = () => {
       <div className="w-64 bg-base-200 p-6">
         <h3 className="text-2xl font-bold mb-6">Admin {usuario?.nombre}</h3>
         <ul className="menu bg-base-100 rounded-box">
+        <li><Link to="/">Home</Link></li>
           {/* Cursos */}
           <li>
             <details open>
@@ -50,8 +51,8 @@ const AdminPanel = () => {
                 <li><Link to="user/listado">Listar Usuarios</Link></li>
               </ul>
             </details>
-          </li>
-          <li className="mb-2"><ThemeSwitcher /></li>
+          </li>          
+          <li className="mb-2 items-center"><ThemeSwitcher /></li>
           <li className="mb-2"><Link to="/admin/cambiar-password" className="btn btn-outline btn-warning rounded-full">Cambiar contraseña</Link></li>          
           <li className="mb-2">
             <button onClick={logout} className="btn btn-outline btn-error rounded-full">
