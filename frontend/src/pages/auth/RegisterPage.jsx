@@ -115,6 +115,7 @@ const RegisterPage = () => {
               <option value="" disabled className="text-gray-500">-- Seleccione un rol --</option>
               <option value="alumno" className="text-black">Alumno</option>
               <option value="docente" className="text-black">Docente</option>
+              <option value="admin" className="text-black">Administrador</option>
              {/*  <option value="admin" className="text-black">Administrador</option>*/}
             </select>
           </div>
