@@ -4,6 +4,7 @@ import axios from "axios";
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
+  const API_URL = `${import.meta.env.VITE_BACKEND_URL}/api/usuarios`;
   const [usuario, setUsuario] = useState(null);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [loading, setLoading] = useState(true);
@@ -20,12 +21,12 @@ export const AuthProvider = ({ children }) => {
   }, []);
 
   const login = async (correo, contrasenia) => {
-    try {      
-     const { data } = await axios.post("http://localhost:5000/api/usuarios/login", {
+    try {
+      const { data } = await axios.post(`${API_URL}/login`, {
         correo,
         contrasenia,
       });
-    
+
       localStorage.setItem("token", data.token);
       localStorage.setItem("usuario", JSON.stringify(data.usuario));
       axios.defaults.headers.common["Authorization"] = `Bearer ${data.token}`;

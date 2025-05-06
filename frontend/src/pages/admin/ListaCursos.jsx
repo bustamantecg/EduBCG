@@ -12,6 +12,7 @@ const ListaCursos = () => {
   const navigate = useNavigate();
   const MySwal = withReactContent(Swal);
   const [cursos, setCursos] = useState([]);
+  const API_URL = `${import.meta.env.VITE_BACKEND_URL}/api/cursos`;
 
   useEffect(() => {
     cargarCursos();
@@ -19,9 +20,10 @@ const ListaCursos = () => {
 
   const cargarCursos = async () => {
     try {
-      const res = await axios.get('http://localhost:5000/api/cursos');
+      //const res = await axios.get('http://localhost:5000/api/cursos');
+      const res = await axios.get(`${API_URL}`);
       //const data = await res.json();
-      setCursos(res.data.cursos); // Asegurate que res.data es un array de cursos
+      setCursos(res.data.cursos);
     } catch (error) {
       console.error("Error al cargar los cursos.", error);
       toast.error("Error al cargar los Cursos.");
@@ -40,7 +42,8 @@ const ListaCursos = () => {
 
     if (result.isConfirmed) {
       try {
-        await axios.delete(`http://localhost:5000/api/cursos/${id}`);
+        //await axios.delete(`http://localhost:5000/api/cursos/${id}`);
+        await axios.delete(`${API_URL}/${id}`);
         //await eliminarCurso(_id);
         toast.success("Curso eliminado correctamente.");
         cargarCursos(); // Actualizar lista

@@ -9,6 +9,8 @@ import { format } from "date-fns";
 const ListaDocentes = () => {
   const [usuarios, setUsuarios] = useState([]);
 
+  const API_URL = `${import.meta.env.VITE_BACKEND_URL}/api/usuarios`;
+
   // Instancia de SweetAlert2 con React
 const MySwal = withReactContent(Swal);
 
@@ -18,7 +20,8 @@ const MySwal = withReactContent(Swal);
 
   const fetchUsuarios = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/api/usuarios?rol=docente");
+      //const res = await axios.get("http://localhost:5000/api/usuarios?rol=docente");
+      const res = await axios.get(`${API_URL}?rol=docente`);
       setUsuarios(res.data);
     } catch (err) {
       console.error("Error al obtener los Docentes", err);
@@ -38,7 +41,8 @@ const MySwal = withReactContent(Swal);
 
     if (result.isConfirmed) {
       try {
-        await axios.delete(`http://localhost:5000/api/usuarios/${id}`);
+        //await axios.delete(`http://localhost:5000/api/usuarios/${id}`);
+        await axios.delete(`${API_URL}/${id}`);
         toast.success("Docentes eliminado correctamente.");
         fetchUsuarios(); // Actualizar lista
       } catch (error) {
@@ -89,7 +93,6 @@ const MySwal = withReactContent(Swal);
       </div>
     </div>
   );
-
 
 }
 

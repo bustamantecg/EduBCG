@@ -1,6 +1,7 @@
 import axios from 'axios';
 
-const API_URL = 'http://localhost:5000/api/cursos';
+//const API_URL = 'http://localhost:5000/api/cursos';
+const API_URL = `${import.meta.env.VITE_BACKEND_URL}/api/cursos`;
 
 const config = () => {
     const token = localStorage.getItem('token'); // O desde tu context/auth provider

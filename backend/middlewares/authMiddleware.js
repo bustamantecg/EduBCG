@@ -10,7 +10,6 @@ export const verificarToken = (req, res, next) => {
   if (!token) {
     return res.status(401).json({ mensaje: 'Token no proporcionado' });
   }
-
   try {
     const decoded = jwt.verify(token, SECRET);
     req.user = decoded; // Guarda la info del usuario en la request

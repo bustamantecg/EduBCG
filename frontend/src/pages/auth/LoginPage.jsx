@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 const LoginPage = () => {
   const { login, usuario } = useAuth();
   const navigate = useNavigate();
+  const API_URL = `${import.meta.env.VITE_BACKEND_URL}/api/usuarios`;
 
   const [correo, setCorreo] = useState("");
   const [contrasenia, setContrasenia] = useState("");

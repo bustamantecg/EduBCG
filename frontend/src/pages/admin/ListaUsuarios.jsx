@@ -11,6 +11,7 @@ const MySwal = withReactContent(Swal);
 
 const ListaUsuarios = () => {
   const [usuarios, setUsuarios] = useState([]);
+  const API_URL = `${import.meta.env.VITE_BACKEND_URL}/api/usuarios`;
 
   useEffect(() => {
     fetchUsuarios();
@@ -18,7 +19,8 @@ const ListaUsuarios = () => {
 
   const fetchUsuarios = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/api/usuarios");
+      //const res = await axios.get("http://localhost:5000/api/usuarios");
+      const res = await axios.get(`${API_URL}`);
       setUsuarios(res.data);
     } catch (err) {
       console.error("Error al obtener los usuarios", err);
@@ -38,7 +40,8 @@ const ListaUsuarios = () => {
 
     if (result.isConfirmed) {
       try {
-        await axios.delete(`http://localhost:5000/api/usuarios/${id}`);
+        //await axios.delete(`http://localhost:5000/api/usuarios/${id}`);
+        await axios.delete(`${API_URL}/${id}`);
         toast.success("Usuario eliminado correctamente.");
         fetchUsuarios(); // Actualizar lista
       } catch (error) {
@@ -51,9 +54,7 @@ const ListaUsuarios = () => {
   return (
     <div>
       <h1 className="text-2xl font-bold mb-6">Panel de Administración - Lista de Usuarios</h1>
-
       <h2 className="text-xl font-semibold mb-4">Usuarios registrados</h2>
-
       <div className="overflow-x-auto">
         <table className="table table-md">
           <thead>

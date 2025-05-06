@@ -20,7 +20,7 @@ export default function NotFound() {
   return (
     <div className="min-h-screen flex flex-col items-center justify-center text-center p-6 bg-base-100">
       <img
-        src="https://i.imgur.com/qIufhof.png" // Puedes cambiar esta URL por otra imagen que prefieras
+        src="https://i.imgur.com/qIufhof.png"
         alt="Página no encontrada"
         className="w-80 mb-6"
       />

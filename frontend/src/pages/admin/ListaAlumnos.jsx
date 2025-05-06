@@ -6,8 +6,9 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { format } from "date-fns";
 
-const ListaAlumnos = () => {
+const ListaAlumnos = () => {    
     const [usuarios, setUsuarios] = useState([]);
+    const API_URL = `${import.meta.env.VITE_BACKEND_URL}/api/usuarios`;
 
     // Instancia de SweetAlert2 con React
     const MySwal = withReactContent(Swal);
@@ -18,7 +19,8 @@ const ListaAlumnos = () => {
 
     const fetchUsuarios = async () => {
         try {
-            const res = await axios.get("http://localhost:5000/api/usuarios?rol=alumno");
+            //const res = await axios.get("http://localhost:5000/api/usuarios?rol=alumno");            
+            const res = await axios.get(`${API_URL}?rol=alumno`);
             setUsuarios(res.data);
         } catch (err) {
             console.error("Error al obtener los alumnos", err);
@@ -38,7 +40,8 @@ const ListaAlumnos = () => {
 
         if (result.isConfirmed) {
             try {
-                await axios.delete(`http://localhost:5000/api/usuarios/${id}`);
+                //await axios.delete(`http://localhost:5000/api/usuarios/${id}`);                
+                await axios.delete(`${API_URL}/${id}`);
                 toast.success("Alumno eliminado correctamente.");
                 fetchUsuarios(); // Actualizar lista
             } catch (error) {
@@ -89,8 +92,6 @@ const ListaAlumnos = () => {
             </div>
         </div>
     );
-
-
 }
 
 export default ListaAlumnos

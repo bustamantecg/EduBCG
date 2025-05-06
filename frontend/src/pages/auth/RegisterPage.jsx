@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import Footer from "../../components/Footer";
 
 const RegisterPage = () => {
   const navigate = useNavigate();
