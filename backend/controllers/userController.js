@@ -10,7 +10,7 @@ const SECRET = process.env.JWT_SECRET;
 // Registrar usuario
 export const registrarUsuario = async (req, res) => {
   try {
-    const { nombre, correo, contrasenia, rol } = req.body;    
+    const { nombre, correo, contrasenia, rol } = req.body;
     // Verificar si el correo ya existe
     const existe = await User.findOne({ correo });
     if (existe) {
@@ -26,7 +26,7 @@ export const registrarUsuario = async (req, res) => {
       contrasenia: hash,
       rol
     });
-    
+
     await nuevoUsuario.save();
     res.status(201).json({ mensaje: 'Usuario registrado correctamente' });
   } catch (error) {
@@ -36,18 +36,18 @@ export const registrarUsuario = async (req, res) => {
 
 // Login usuario
 export const loginUsuario = async (req, res) => {
+  const { correo, contrasenia } = req.body;
+  console.log("Login Usuario--> Cuerpo de la petición:", req.body);
   try {
-    const { correo, contrasenia } = req.body;
     const usuario = await User.findOne({ correo });
 
     if (!usuario) {
       return res.status(404).json({ mensaje: 'Dato Incorrecto' });
     }
-
-    const coincide = await bcrypt.compare(contrasenia, usuario.contrasenia);
-    if (!coincide) {
+    const coincide =  await bcrypt.compare(contrasenia, usuario.contrasenia);
+    if (!coincide) 
       return res.status(401).json({ mensaje: 'Contraseña incorrecta' });
-    }
+    
     const token = jwt.sign(
       {
         id: usuario._id,
@@ -55,7 +55,7 @@ export const loginUsuario = async (req, res) => {
         nombre: usuario.nombre
       },
       SECRET,
-      { expiresIn: '4h' }
+      { expiresIn: '6h' }
     );
 
     res.status(200).json({ token, usuario });
@@ -71,8 +71,8 @@ export const obtenerUsuarios = async (req, res) => {
     const filtro = rol ? { rol } : {}; // Si hay rol, filtra. Si no, devuelve todos.
 
     const usuarios = await User.find(filtro)
-    .sort({ nombre: 1 }) // ordno ascendente por nombre
-    .populate('perfiles'); 
+      .sort({ nombre: 1 }) // ordno ascendente por nombre
+      .populate('perfiles');
     res.status(200).json(usuarios);
   } catch (error) {
     res.status(500).json({ mensaje: 'Error al obtener usuarios', error });
@@ -95,7 +95,6 @@ export const eliminarUsuario = async (req, res) => {
     res.status(400).json({ mensaje: 'Error al eliminar Usuario' });
   }
 };
-
 
 export const cambiarPassword = async (req, res) => {
   const { actualPassword, nuevaPassword } = req.body;

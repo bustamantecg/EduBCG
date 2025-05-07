@@ -5,6 +5,7 @@ import axios from "axios";
 const RegisterPage = () => {
   const navigate = useNavigate();
 
+  const API_URL = `${import.meta.env.VITE_BACKEND_URL}/api/usuarios`;
   const [formData, setFormData] = useState({
     nombre: "",
     correo: "",
@@ -41,7 +42,8 @@ const RegisterPage = () => {
       return;
     }
     try {
-      await axios.post("http://localhost:5000/api/usuarios/registro", formData);
+      //await axios.post("http://localhost:5000/api/usuarios/registro", formData);      
+      await axios.post(`${API_URL}/registro`, formData);
       navigate("/login");
     } catch (err) {
       setError(err.response?.data?.mensaje || "Error al registrar");

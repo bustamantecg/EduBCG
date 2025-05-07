@@ -22,10 +22,12 @@ export const AuthProvider = ({ children }) => {
 
   const login = async (correo, contrasenia) => {
     try {
+ 
       const { data } = await axios.post(`${API_URL}/login`, {
         correo,
         contrasenia,
       });
+      console.log("Respuesta del servidor:", data); // Verifica qué responde el backend
 
       localStorage.setItem("token", data.token);
       localStorage.setItem("usuario", JSON.stringify(data.usuario));

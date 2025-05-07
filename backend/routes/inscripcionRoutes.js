@@ -29,7 +29,7 @@ router.get("/mis-alumnos", verificarToken, verificarRol(['docente']),
   obtenerMisAlumnos
 );
 
-router.put('/:id/actualizar-nota', verificarToken,  verificarRol(['docente']), // o admin, según tu lógica
+router.put('/:id/actualizar-nota', verificarToken,  verificarRol(['docente']), 
   actualizarNotaFinal
 );
 
