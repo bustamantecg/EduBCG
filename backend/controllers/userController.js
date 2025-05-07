@@ -45,9 +45,10 @@ export const loginUsuario = async (req, res) => {
       return res.status(404).json({ mensaje: 'Dato Incorrecto' });
     }
     const coincide =  await bcrypt.compare(contrasenia, usuario.contrasenia);
-    if (!coincide) 
+    if (!coincide) {
+      console.log("const coincide: ", coincide) ;
       return res.status(401).json({ mensaje: 'Contraseña incorrecta' });
-    
+    }
     const token = jwt.sign(
       {
         id: usuario._id,
